@@ -1,9 +1,18 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
+
+interface IERC20 {
+    function transferFrom(
+        address from,
+        address to,
+        uint256 value
+    ) external returns (bool success);
+}
 
 interface IM3tering {
     error InputIsZero();
     error Unauthorized();
+    error TransferError();
 
     event Revenue(
         uint256 indexed tokenId,
@@ -20,6 +29,19 @@ interface IM3tering {
         address from
     );
 
+    event Deposit(
+        uint256 indexed amount,
+        address indexed from,
+        address indexed to,
+        uint256 timestamp
+    );
+
+    event Claim(
+        address indexed to,
+        uint256 indexed amount,
+        uint256 indexed timestamp
+    );
+
     struct State {
         // int:tariff = float:$$ *10^3
         uint248 tariff;
@@ -34,7 +56,7 @@ interface IM3tering {
 
     function pay(uint256 tokenId, uint256 amount) external;
 
-    function claim(uint256 amountOutMin, uint256 deadline) external;
+    function claim() external;
 
     function stateOf(uint256 tokenId) external view returns (bool);
 
