@@ -7,6 +7,8 @@ interface IERC20 {
         address to,
         uint256 value
     ) external returns (bool success);
+
+    function transfer(address to, uint256 amount) external returns (bool);
 }
 
 interface IM3tering {
@@ -36,11 +38,7 @@ interface IM3tering {
         uint256 timestamp
     );
 
-    event Claim(
-        address indexed to,
-        uint256 indexed amount,
-        uint256 indexed timestamp
-    );
+    event Claim(address indexed to, uint256 indexed amount, uint256 indexed timestamp);
 
     struct State {
         // int:tariff = float:$$ *10^3

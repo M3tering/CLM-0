@@ -44,15 +44,15 @@ contract M3tering is IM3tering, Pausable, AccessControl {
         emit Deposit(amount, msg.sender, address(this), block.timestamp);
         
         uint256 fee = (amount * 3) / 1000;
-        revenues[_ownerOf(tokenId)] = amount - fee;
-        revenues[feeAddress] = fee;
+        revenues[_ownerOf(tokenId)] += amount - fee;
+        revenues[feeAddress] += fee;
         emit Revenue(tokenId, amount, tariffOf(tokenId), msg.sender, block.timestamp);
     }
 
     function claim() external whenNotPaused {
         uint256 amount = revenues[msg.sender];
         if (amount < 1) revert InputIsZero();
-        if (!DAI.transferFrom(address(this), msg.sender, amount)) revert TransferError();
+        if (!DAI.transfer(msg.sender, amount)) revert TransferError();
         emit Claim(msg.sender, amount, block.timestamp);
         revenues[msg.sender] = 0;
     }
