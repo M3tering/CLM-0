@@ -52,7 +52,7 @@ contract M3tering is IM3tering, Pausable, AccessControl {
     function claim() external whenNotPaused {
         uint256 amount = revenues[msg.sender];
         if (amount < 1) revert InputIsZero();
-        if (!DAI.transferFrom(msg.sender, address(this), amount)) revert TransferError();
+        if (!DAI.transferFrom(address(this), msg.sender, amount)) revert TransferError();
         emit Claim(msg.sender, amount, block.timestamp);
         revenues[msg.sender] = 0;
     }
