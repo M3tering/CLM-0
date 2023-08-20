@@ -75,6 +75,6 @@ contract M3tering is IM3tering, Pausable, AccessControl {
     }
 
     function _ownerOf(uint256 tokenId) internal view returns (address) {
-        return IERC721(0x1CbAd85Aa66Ff3C12dc84C5881886EEB29C1bb9b).ownerOf(tokenId); // TODO: add M3ter address
+        return IERC721(0xFbCd927f7970030BB90383E68d24f1B897246132).ownerOf(tokenId); // testM3ter
     }
 }
