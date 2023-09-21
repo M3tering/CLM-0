@@ -51,7 +51,6 @@ contract M3tering_V0 is IM3tering, Pausable, AccessControl {
         revenues[feeAddress] += fee;
         revenues[_ownerOf(tokenId)] += amount - fee;
         
-        emit Deposit(amount, msg.sender, address(this), block.timestamp);
         emit Revenue(tokenId, amount, tariffOf(tokenId), msg.sender, block.timestamp);
     }
 

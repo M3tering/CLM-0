@@ -32,13 +32,6 @@ interface IM3tering {
         address from
     );
 
-    event Deposit(
-        uint256 indexed amount,
-        address indexed from,
-        address indexed to,
-        uint256 timestamp
-    );
-
     event Claim(address indexed to, uint256 indexed amount, uint256 indexed timestamp);
 
     struct State {
