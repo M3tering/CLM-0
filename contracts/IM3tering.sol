@@ -59,5 +59,5 @@ interface IM3tering {
 
     function stateOf(uint256 tokenId) external view returns (bool);
 
-    function tariffOf(uint256 tokenId) external view returns (uint);
+    function tariffOf(uint256 tokenId) external view returns (uint256);
 }
