@@ -13,6 +13,7 @@ interface IERC20 {
 
 interface IM3tering {
     error InputIsZero();
+    error ZeroAddress();
     error Unauthorized();
     error TransferError();
 
