@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "./IM3tering.sol";
 
 /// @custom:security-contact info@whynotswitch.com
-contract M3tering is IM3tering, Pausable, AccessControl {
+contract M3tering_V0 is IM3tering, Pausable, AccessControl {
     mapping(uint256 => State) public states;
     mapping(address => uint256) public revenues;
 
