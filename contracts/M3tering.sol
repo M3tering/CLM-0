@@ -4,10 +4,12 @@ pragma solidity ^0.8.19;
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "./IM3tering.sol";
+
+import "./interfaces/IERC20.sol";
+import "./interfaces/IVersion_0.sol";
 
 /// @custom:security-contact info@whynotswitch.com
-contract M3tering_V0 is IM3tering, Pausable, AccessControl {
+contract M3tering_V0 is IVersion_0, Pausable, AccessControl {
     mapping(uint256 => State) public states;
     mapping(address => uint256) public revenues;
 
