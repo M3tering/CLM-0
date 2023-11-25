@@ -10,8 +10,7 @@ contract Strategy_V0 {
     function claim(
         uint256 revenueAmount,
         address receiver,
-        uint256 outputAmount,
-        uint256 deadline
+        uint256 outputAmount
     ) public {
         if (
             !IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138).transferFrom(
