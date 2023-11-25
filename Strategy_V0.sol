@@ -7,7 +7,18 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contr
 contract Strategy_V0 {
     error TransferError();
 
-    function claim(uint256 revenueAmount, address receiver, uint256 outputAmount, uint256 deadline) public {
-        if (!IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138).transferFrom(msg.sender, receiver, revenueAmount)) revert TransferError();
+    function claim(
+        uint256 revenueAmount,
+        address receiver,
+        uint256 outputAmount,
+        uint256 deadline
+    ) public {
+        if (
+            !IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138).transferFrom(
+                msg.sender,
+                receiver,
+                revenueAmount
+            )
+        ) revert TransferError();
     }
 }
