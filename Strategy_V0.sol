@@ -9,18 +9,16 @@ contract Strategy_V0 is IStrategy {
     error AmountError();
     error TransferError();
 
+    IERC20 public constant DAI =
+        IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138);
+
     function claim(
         uint256 revenueAmount,
         address receiver,
         uint256 outputAmount
     ) public {
         if (revenueAmount < outputAmount) revert AmountError();
-        if (
-            !IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138).transferFrom(
-                msg.sender,
-                receiver,
-                revenueAmount
-            )
-        ) revert TransferError();
+        if (!DAI.transferFrom(msg.sender, receiver, revenueAmount))
+            revert TransferError();
     }
 }
