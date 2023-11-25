@@ -5,7 +5,8 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contr
 import "./interfaces/IStrategy.sol";
 
 /// @custom:security-contact info@whynotswitch.com
-contract Strategy_V0 is IStrategy{
+contract Strategy_V0 is IStrategy {
+    error AmountError();
     error TransferError();
 
     function claim(
@@ -13,6 +14,7 @@ contract Strategy_V0 is IStrategy{
         address receiver,
         uint256 outputAmount
     ) public {
+        if (revenueAmount < outputAmount) revert AmountError();
         if (
             !IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138).transferFrom(
                 msg.sender,
