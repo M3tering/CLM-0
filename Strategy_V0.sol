@@ -2,9 +2,10 @@
 pragma solidity ^0.8.19;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contracts/token/ERC20/IERC20.sol";
+import "./interfaces/IStrategy.sol";
 
 /// @custom:security-contact info@whynotswitch.com
-contract Strategy_V0 {
+contract Strategy_V0 is IStrategy{
     error TransferError();
 
     function claim(
