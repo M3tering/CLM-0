@@ -5,20 +5,14 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contr
 import "./interfaces/IStrategy.sol";
 
 /// @custom:security-contact info@whynotswitch.com
-contract Strategy_V0 is IStrategy {
-    error AmountError();
+contract Strategy0 is IStrategy {
     error TransferError();
 
     IERC20 public constant DAI =
         IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138);
 
-    function claim(
-        uint256 revenueAmount,
-        address receiver,
-        uint256 outputAmount
-    ) public {
-        if (revenueAmount < outputAmount) revert AmountError();
-        if (!DAI.transferFrom(msg.sender, receiver, revenueAmount))
-            revert TransferError();
+    function claim(uint256 amount, bytes calldata data) external {
+        address to = abi.decode(data, (address));
+        if (!DAI.transferFrom(msg.sender, to, amount)) revert TransferError();
     }
 }
