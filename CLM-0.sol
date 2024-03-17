@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import "./interfaces/IStrategy.sol";
+import "./interfaces/ICLM.sol";
 
 /// @custom:security-contact info@whynotswitch.com
-contract Strategy0 is IStrategy {
+contract CLM0 is ICLM {
     error TransferError();
 
     function claim(bytes calldata data) external payable {
